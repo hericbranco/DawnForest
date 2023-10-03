@@ -11,7 +11,7 @@ export(NodePath) onready var ObjPlayer = get_node(ObjPlayer) as KinematicBody2D
 
 func animate(direction:Vector2) -> void:
 	verity_position(direction)
-	if ObjPlayer.attacking or ObjPlayer.defending or ObjPlayer.crouching:
+	if ObjPlayer.attacking or ObjPlayer.defending or ObjPlayer.crouching or ObjPlayer.next_to_wall():
 		action_behavior()
 	elif direction.y!=0:
 		vertical_behavior(direction)
@@ -25,12 +25,20 @@ func verity_position(direction:Vector2) -> void:
 	if direction.x > 0:
 		flip_h=false
 		suffix="_right"
+		ObjPlayer.direction=-1
+		position=Vector2.ZERO
+		ObjPlayer.wall_ray=Vector2(5.5, 0)
 	elif direction.x < 0:
 		flip_h=true
 		suffix="_left"
+		ObjPlayer.direction=1
+		position=Vector2(-2, 0)
+		ObjPlayer.wall_ray=Vector2(-7.5, 0)
 
 func action_behavior() ->void:
-	if ObjPlayer.attacking and normal_attack:
+	if ObjPlayer.next_to_wall():
+		animation.play("wall_slide")
+	elif ObjPlayer.attacking and normal_attack:
 		animation.play("attack"+suffix)
 	elif ObjPlayer.defending and shield_off:
 		animation.play("shield")
