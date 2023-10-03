@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/normal_decoration_tile.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/env/background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/floor.tres" type="TileSet" id=3]
+[ext_resource path="res://resources/small_decoration_tile.tres" type="TileSet" id=4]
+[ext_resource path="res://scenes/env/mascara.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=6]
+
+[node name="level" type="Node2D"]
+
+[node name="levelDesign" type="Node2D" parent="."]
+
+[node name="floor" type="TileMap" parent="levelDesign"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 262144, 0, 0, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 2, 262157, 0, 0, 262158, 0, 1, 262159, 0, 2, 327680, 0, 131072, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131073, 327685, 0, 131073, 327686, 0, 131073, 327687, 0, 131073, 327688, 0, 131073, 327689, 0, 131074, 327693, 0, 131072, 327694, 0, 131073, 327695, 0, 131074, 589838, 0, 0, 589839, 0, 1, 589840, 0, 1, 589841, 0, 1, 589842, 0, 1, 589843, 0, 2, 655374, 0, 131072, 655375, 0, 131073, 655376, 0, 131073, 655377, 0, 131073, 655378, 0, 131073, 655379, 0, 131074 )
+
+[node name="normalDecorationTile" type="TileMap" parent="levelDesign"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 131081, 2, 0, 196609, 0, 0, 196611, 0, 0, 196613, 0, 0, 196614, 0, 0, 196621, 3, 0, 458766, 2, 0, 524305, 5, 0, 524307, 1, 0 )
+
+[node name="smallDecorationTile" type="TileMap" parent="levelDesign"]
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 458753, 0, 0, 458755, 0, 0, 458760, 2, 0, 458764, 0, 0, 458766, 2, 0, 458780, 1, 0, 458782, 1, 0, 1114145, 2, 0, 1114148, 2, 0 )
+
+[node name="background" parent="." instance=ExtResource( 2 )]
+
+[node name="mascara" parent="." instance=ExtResource( 5 )]
+color = Color( 0.258824, 0.258824, 0.258824, 1 )
+
+[node name="player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 89, 14 )
