@@ -32,6 +32,7 @@ tile_data = PoolIntArray( 458753, 0, 0, 458755, 0, 0, 458760, 2, 0, 458764, 0, 0
 [node name="background" parent="." instance=ExtResource( 2 )]
 
 [node name="mascara" parent="." instance=ExtResource( 5 )]
+visible = false
 color = Color( 0.258824, 0.258824, 0.258824, 1 )
 
 [node name="player" parent="." instance=ExtResource( 6 )]
