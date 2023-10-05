@@ -3,6 +3,7 @@ class_name playerTexture
 
 var suffix:String="_right"
 var normal_attack:bool=false
+var second_attack:bool=false
 var shield_off:bool=false
 var crouching_off:bool=false
 
@@ -39,7 +40,7 @@ func action_behavior() ->void:
 	if ObjPlayer.next_to_wall():
 		animation.play("wall_slide")
 	elif ObjPlayer.attacking and normal_attack:
-		animation.play("attack"+suffix)
+		animation.play("attack_1"+suffix)
 	elif ObjPlayer.defending and shield_off:
 		animation.play("shield")
 		shield_off=false
@@ -68,6 +69,26 @@ func on_animation_finished(anim_name:String):
 		"attack_left":
 			normal_attack=false
 			ObjPlayer.attacking=false
+		"attack_1_left":
+			normal_attack=false
+			if second_attack:
+				animation.play("attack_2"+suffix)
+			else:
+				ObjPlayer.attacking=false
+		"attack_2_left":
+			normal_attack=false
+			second_attack=false
+			ObjPlayer.attacking=false
 		"attack_right":
 			normal_attack=false
+			ObjPlayer.attacking=false
+		"attack_1_right":
+			normal_attack=false
+			if second_attack:
+				animation.play("attack_2"+suffix)
+			else:
+				ObjPlayer.attacking=false
+		"attack_2_right":
+			normal_attack=false
+			second_attack=false
 			ObjPlayer.attacking=false

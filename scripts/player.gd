@@ -47,7 +47,7 @@ func vertical_movement_env() ->void:
 		
 	if Input.is_action_just_pressed("ui_select") and jump_count < 2 and can_trak_input and not attacking:
 		jump_count += 1
-		if next_to_wall() and is_on_floor():
+		if next_to_wall() and is_on_floor():			
 			velocity.y=wall_jump_speed
 			velocity.x=wall_impulse_speed*direction
 		else:
@@ -60,9 +60,12 @@ func actions_env() ->void:
 
 func attack() ->void:
 	var attack_condition:bool=not attacking and not crouching and not defending
+	var attack2_condition:bool=attacking and not crouching and not defending
 	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor():
 		attacking=true
 		player_sprite.normal_attack=true
+	elif Input.is_action_just_pressed("attack") and attack2_condition and is_on_floor():
+		player_sprite.second_attack=true
 	
 func crouch() ->void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
@@ -93,11 +96,12 @@ func gravity(delta:float) ->void:
 			velocity.y = player_gravity
 
 func next_to_wall() ->bool:
-	#TODO FIX ERROR THIS FUNCTION
-	#wall_ray.is_colliding()
-	return false
+	if not is_instance_valid(wall_ray):
+		return false
+	#print_debug(wall_ray.is_colliding())
+	#print_debug(is_on_floor())
 	if wall_ray.is_colliding() and not is_on_floor():
-	#print_debug(wall_ray)
+		print_debug("aaa")
 		if not_on_wall:
 			velocity.y=0
 			not_on_wall=false
