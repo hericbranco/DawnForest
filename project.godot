@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/env/background.gd"
 }, {
+"base": "Node2D",
+"class": "level",
+"language": "GDScript",
+"path": "res://scripts/management/level.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "player",
 "language": "GDScript",
 "path": "res://scripts/player.gd"
+}, {
+"base": "Node",
+"class": "playerStats",
+"language": "GDScript",
+"path": "res://scripts/player/stats.gd"
 }, {
 "base": "Sprite",
 "class": "playerTexture",
@@ -26,7 +36,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Background": "",
+"level": "",
 "player": "",
+"playerStats": "",
 "playerTexture": ""
 }
 

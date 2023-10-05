@@ -1,6 +1,8 @@
 extends Sprite
 class_name playerTexture
 
+signal game_over
+
 var suffix:String="_right"
 var normal_attack:bool=false
 var second_attack:bool=false
@@ -9,10 +11,13 @@ var crouching_off:bool=false
 
 export(NodePath) onready var animation = get_node(animation) as AnimationPlayer
 export(NodePath) onready var ObjPlayer = get_node(ObjPlayer) as KinematicBody2D
+export(NodePath) onready var attack_collision = get_node(attack_collision) as CollisionShape2D
 
 func animate(direction:Vector2) -> void:
 	verity_position(direction)
-	if ObjPlayer.attacking or ObjPlayer.defending or ObjPlayer.crouching or ObjPlayer.next_to_wall():
+	if ObjPlayer.on_hit or ObjPlayer.dead:
+		hit_behavior()
+	elif ObjPlayer.attacking or ObjPlayer.defending or ObjPlayer.crouching or ObjPlayer.next_to_wall():
 		action_behavior()
 	elif direction.y!=0:
 		vertical_behavior(direction)
@@ -35,6 +40,14 @@ func verity_position(direction:Vector2) -> void:
 		ObjPlayer.direction=1
 		position=Vector2(-2, 0)
 		ObjPlayer.wall_ray=Vector2(-7.5, 0)
+
+func hit_behavior()->void:
+	ObjPlayer.set_physics_process(false)
+	attack_collision.set_deferred("disabled", true)
+	if ObjPlayer.dead:
+		animation.play("dead")
+	elif ObjPlayer.on_hit:
+		animation.play("hit")
 
 func action_behavior() ->void:
 	if ObjPlayer.next_to_wall():
@@ -92,3 +105,13 @@ func on_animation_finished(anim_name:String):
 			normal_attack=false
 			second_attack=false
 			ObjPlayer.attacking=false
+		"hit":
+			ObjPlayer.on_hit=false
+			ObjPlayer.set_physics_process(true)
+			
+			if ObjPlayer.defending:
+				animation.play("shield")
+			if ObjPlayer.crouching:
+				animation.play("crounch")
+		"dead":
+			emit_signal("game_over")
