@@ -2,6 +2,9 @@ extends Node
 class_name playerStats
 
 export(NodePath) onready var ObjPlayer = get_node(ObjPlayer) as KinematicBody2D
+export(NodePath) onready var collision_area = get_node(collision_area) as Area2D
+
+onready var invecibility_timer:Timer = get_node("invencibilityTimer")
 
 var shielding:bool = false
 
@@ -97,3 +100,14 @@ func update_mana(type:String, value:int)->void:
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		update_health("Decrease", 5)
+
+
+func on_collision_area_entered(area):
+	if area.name=="EnemyAttackArea":
+		update_health("Decrease", area.damage)
+		collision_area.set_deferred("monitoring", false)
+		invecibility_timer.start(area.invecibility_timer)
+
+
+func on_invencibilityTimer_timeout():
+	collision_area.set_deferred("monitoring", true)

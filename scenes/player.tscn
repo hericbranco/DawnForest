@@ -746,5 +746,17 @@ anims/ligth_animation = SubResource( 19 )
 [node name="stats" type="Node" parent="."]
 script = ExtResource( 5 )
 ObjPlayer = NodePath("..")
+collision_area = NodePath("../collisionArea")
+
+[node name="invencibilityTimer" type="Timer" parent="stats"]
+one_shot = true
+
+[node name="collisionArea" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="collisionArea"]
+position = Vector2( -1, 12.5 )
+shape = SubResource( 7 )
 
 [connection signal="animation_finished" from="animation" to="texture" method="on_animation_finished"]
+[connection signal="timeout" from="stats/invencibilityTimer" to="stats" method="on_invencibilityTimer_timeout"]
+[connection signal="area_entered" from="collisionArea" to="stats" method="on_collision_area_entered"]
