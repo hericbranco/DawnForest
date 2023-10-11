@@ -73,6 +73,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath(".:collision_layer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 4 ]
+}
 
 [sub_resource type="Animation" id=14]
 resource_name = "attack_1_left"
@@ -489,6 +501,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "fall"
@@ -680,6 +704,8 @@ tracks/1/keys = {
 }
 
 [node name="player" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 2 )
 speed = 75
 jump_speed = -175
@@ -724,6 +750,8 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
 [node name="attackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
 
 [node name="collision" type="CollisionShape2D" parent="attackArea"]
 shape = SubResource( 9 )
@@ -732,6 +760,7 @@ disabled = true
 [node name="wallRay" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 5.5, 0 )
+collision_mask = 3
 
 [node name="ligth" type="Light2D" parent="."]
 texture = ExtResource( 4 )
@@ -752,6 +781,8 @@ collision_area = NodePath("../collisionArea")
 one_shot = true
 
 [node name="collisionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="collision" type="CollisionShape2D" parent="collisionArea"]
 position = Vector2( -1, 12.5 )

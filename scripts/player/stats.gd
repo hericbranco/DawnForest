@@ -98,8 +98,9 @@ func update_mana(type:String, value:int)->void:
 			current_mana -= value
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_select"):
-		update_health("Decrease", 5)
+	#if Input.is_action_just_pressed("ui_select"):
+	#	update_health("Decrease", 5)
+	pass
 
 
 func on_collision_area_entered(area):

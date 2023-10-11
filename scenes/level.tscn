@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/normal_decoration_tile.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/env/background.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/env/mascara.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/management/level.gd" type="Script" id=7]
+[ext_resource path="res://scenes/enemy/whale.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -21,6 +22,8 @@ script = ExtResource( 7 )
 [node name="floor" type="TileMap" parent="levelDesign"]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
+collision_layer = 3
+collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -196609, 0, 0, -262144, 0, 2, -131073, 0, 65536, -196608, 0, 65538, -65537, 0, 65536, -131072, 0, 65538, -1, 0, 65536, -65536, 0, 65538, 65535, 0, 65536, 0, 0, 65538, 131071, 0, 65536, 65536, 0, 65538, 196607, 0, 65536, 131072, 0, 65538, 262143, 0, 65536, 196608, 0, 65538, 327679, 0, 65536, 262144, 0, 0, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 2, 262157, 0, 0, 262158, 0, 1, 262159, 0, 2, 393215, 0, 131072, 327680, 0, 131073, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131073, 327685, 0, 131073, 327686, 0, 131073, 327687, 0, 131073, 327688, 0, 131073, 327689, 0, 131074, 327693, 0, 131072, 327694, 0, 131073, 327695, 0, 131074, 589838, 0, 0, 589839, 0, 1, 589840, 0, 1, 589841, 0, 1, 589842, 0, 1, 589843, 0, 2, 655374, 0, 131072, 655375, 0, 131073, 655376, 0, 131073, 655377, 0, 131073, 655378, 0, 131073, 655379, 0, 131074 )
 
@@ -46,3 +49,8 @@ position = Vector2( 89, 14 )
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
+
+[node name="Enemy" type="Node2D" parent="."]
+
+[node name="Whale" parent="Enemy" instance=ExtResource( 8 )]
+position = Vector2( 296, 112 )
