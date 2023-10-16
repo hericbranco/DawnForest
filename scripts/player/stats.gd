@@ -70,7 +70,6 @@ func update_health(type:String, value:int)->void:
 				current_health = max_health
 		"Decrease":
 			verify_shield(value)
-			print_debug(current_health)
 			if current_health <= 0:
 				ObjPlayer.dead=true
 			else:

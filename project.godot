@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/enemy/EnemyTexture.gd"
 }, {
+"base": "RigidBody2D",
+"class": "PhisycItem",
+"language": "GDScript",
+"path": "res://scripts/env/phisyc_item.gd"
+}, {
+"base": "EnemyTemplate",
+"class": "Whale",
+"language": "GDScript",
+"path": "res://scripts/enemy/whale/whale.gd"
+}, {
 "base": "EnemyTexture",
 "class": "WhaleTexture",
 "language": "GDScript",
@@ -71,6 +81,8 @@ _global_script_class_icons={
 "EnemyAttackArea": "",
 "EnemyTemplate": "",
 "EnemyTexture": "",
+"PhisycItem": "",
+"Whale": "",
 "WhaleTexture": "",
 "level": "",
 "player": "",
